@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Node.js",
+    "description": "API para retornar o Funcionario com maior salário",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "With docker-compose"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Funcionarios",
+      "description": "Essa API foi criada para retornar o funcionario que recebe o maior salário"
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/funcionarios/maiorsalario": {
+      "post": {
+        "tags": ["Retornar maior salario"],
+        "summary": "Maior salario",
+        "requestBody": {
+          "description": "Funcionario Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Funcionario"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Funcionarios": {
+      "type": "object",
+      "properties": {
+        "matricula": {
+          "type": "number"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "salario": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}
